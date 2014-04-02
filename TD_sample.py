@@ -3,7 +3,6 @@
 import sys
 from dynect.DynectDNS import DynectRest
 import ConfigParser
-import pprint
 
 #function to read API credentials from file
 def get_creds() :
@@ -60,12 +59,10 @@ dsf_id = dsf_desc['data']['service_id']
 #this example would find all A records with rdata 123.45.67.89 and update them to 98.76.54.32
 argum = { 'master_line' : '123.45.67.89' }
 rec_uris = dyn_iface.execute('/DSFRecord/' + dsf_id, 'GET', argum)
-pp = pprint.PrettyPrinter()
 
 argum = { 'rdata' : { 'a_rdata' : { 'address' : '98.76.54.32' } } }
 for rec_uri in rec_uris['data']:
     update = dyn_iface.execute(rec_uri, 'PUT', argum)
-    pp.pprint( update )
 
 #publish changes
 argum = { 'publish' : 'Y' }
