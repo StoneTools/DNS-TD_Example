@@ -22,7 +22,7 @@ def get_creds() :
         raise
 
 #this is an inefficient lookup, much faster to use labels or other details
-#for demonstration purposes
+#for demonstration purposes only
 def get_dsf_byfqdn( dyn_iface, fqdn ):
     response = dyn_iface.execute('/DSF/','GET')
     for uri in response['data']:
